@@ -13,3 +13,8 @@ export const deleteCandidate = (id) => ({
   type: DELETE_CANDIDATE,
   payload: id,
 });
+
+export const editCandidate = (data) => ({
+  type: EDIT_CANDIDATE,
+  payload: data,
+});

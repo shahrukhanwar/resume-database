@@ -5,19 +5,21 @@ import axios from 'axios';
 
 import { HeadingContainer } from './style';
 import { deleteCandidate } from '../../actions';
+import EditCandidate from '../EditCandidate';
 
 const CandidateDetails = ({ candidate, dispatch }) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
 
   const showModal = () => {
-    setModalVisible(true);
+    setDeleteModalVisible(true);
   };
 
   const handleDelete = async () => {
     setButtonLoading(true);
     const response = await axios.delete(
-      `https://884ae122.ngrok.io/${candidate._id}`
+      `https://d8856c1e.ngrok.io/${candidate._id}`
     );
     if (response.data.success) {
       dispatch(deleteCandidate(candidate._id));
@@ -26,12 +28,11 @@ const CandidateDetails = ({ candidate, dispatch }) => {
       message.error('Something Went Wrong!');
     }
     setButtonLoading(false);
-    setModalVisible(false);
+    setDeleteModalVisible(false);
   };
 
-  const handleCancel = (e) => {
-    console.log(e);
-    setModalVisible(false);
+  const handleCancel = () => {
+    setDeleteModalVisible(false);
   };
 
   return (
@@ -41,7 +42,7 @@ const CandidateDetails = ({ candidate, dispatch }) => {
       className="candidate-card"
     >
       <Modal
-        visible={modalVisible}
+        visible={deleteModalVisible}
         onOk={handleDelete}
         onCancel={handleCancel}
         footer={[
@@ -61,12 +62,22 @@ const CandidateDetails = ({ candidate, dispatch }) => {
       >
         <p>Are you sure you want to delete?</p>
       </Modal>
-
+      <EditCandidate
+        candidate={candidate}
+        dispatch={dispatch}
+        editModalVisible={editModalVisible}
+        setEditModalVisible={setEditModalVisible}
+      />
       <HeadingContainer>
         <h1>{`${candidate.firstName} ${candidate.lastName}`}</h1>
         <div>
           <Tooltip title="Edit">
-            <Button type="primary" shape="circle" icon={<EditFilled />} />
+            <Button
+              type="primary"
+              shape="circle"
+              icon={<EditFilled />}
+              onClick={() => setEditModalVisible(true)}
+            />
           </Tooltip>
           <Tooltip title="Delete">
             <Button

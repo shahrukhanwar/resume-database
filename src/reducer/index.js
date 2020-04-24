@@ -11,6 +11,12 @@ const reducer = (state, { type, payload }) => {
 
     case DELETE_CANDIDATE:
       return state.filter((candidate) => candidate._id !== payload);
+
+    case EDIT_CANDIDATE:
+      return state.map((candidate) =>
+        candidate._id === payload._id ? payload : candidate
+      );
+
     default:
       return state;
   }

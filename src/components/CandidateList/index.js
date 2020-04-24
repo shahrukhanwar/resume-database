@@ -7,6 +7,7 @@ import CandidateDetails from '../CandidateDetails';
 import { LoadingContainer } from './style';
 import reducer from '../../reducer';
 import { getCandidates } from '../../actions';
+import sort from '../../utils';
 
 const CandidateList = () => {
   const [state, dispatch] = useReducer(reducer, []);
@@ -14,9 +15,10 @@ const CandidateList = () => {
     key: 'firstName',
     value: '',
   });
+  const [sortBy, setSortBy] = useState('');
 
   const getData = async () => {
-    const response = await axios.get('https://884ae122.ngrok.io/');
+    const response = await axios.get('https://d8856c1e.ngrok.io/');
     if (response.data.success) {
       dispatch(getCandidates(response.data.data));
     }
@@ -28,7 +30,12 @@ const CandidateList = () => {
 
   return (
     <div>
-      <SearchSort setSearchBy={setSearchBy} searchBy={searchBy} />
+      <SearchSort
+        setSearchBy={setSearchBy}
+        searchBy={searchBy}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+      />
       {state.length > 0 ? (
         <Row
           gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]}
@@ -43,6 +50,7 @@ const CandidateList = () => {
                     .includes(searchBy.value.toLowerCase())
                 : candidate[searchBy.key].includes(searchBy.value)
             )
+            .sort((a, b) => (sortBy ? sort[sortBy](a, b) : a - b))
             .map((candidate) => (
               <Col xs={24} sm={24} md={24} lg={12} key={candidate._id}>
                 <CandidateDetails candidate={candidate} dispatch={dispatch} />
