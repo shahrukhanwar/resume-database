@@ -48,7 +48,9 @@ const CandidateList = () => {
                 ? candidate[searchBy.key]
                     .toLowerCase()
                     .includes(searchBy.value.toLowerCase())
-                : candidate[searchBy.key].includes(searchBy.value)
+                : candidate[searchBy.key].some((val) =>
+                    val.toLowerCase().includes(searchBy.value.toLowerCase())
+                  )
             )
             .sort((a, b) => (sortBy ? sort[sortBy](a, b) : a - b))
             .map((candidate) => (

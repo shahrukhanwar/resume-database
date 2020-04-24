@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import { Card, Button, Tooltip, Modal, Row, Col, message } from 'antd';
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import {
+  EditFilled,
+  DeleteFilled,
+  GithubFilled,
+  LinkedinFilled,
+  DownOutlined,
+  UpOutlined,
+} from '@ant-design/icons';
 import axios from 'axios';
 
-import { HeadingContainer } from './style';
+import {
+  HeadingContainer,
+  AvatarContainer,
+  LinksContainer,
+  CollapseIcon,
+} from './style';
 import { deleteCandidate } from '../../actions';
 import EditCandidate from '../EditCandidate';
 
@@ -11,6 +23,7 @@ const CandidateDetails = ({ candidate, dispatch }) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
+  const [collapse, setCollapse] = useState(true);
 
   const showModal = () => {
     setDeleteModalVisible(true);
@@ -37,10 +50,34 @@ const CandidateDetails = ({ candidate, dispatch }) => {
 
   return (
     <Card
-      style={{ height: '300px' }}
       hoverable={true}
       className="candidate-card"
+      style={{
+        height: collapse ? 'auto' : '600px',
+      }}
     >
+      <HeadingContainer>
+        <h1>{`${candidate.firstName} ${candidate.lastName}`}</h1>
+        <div>
+          <Tooltip title="Edit">
+            <Button
+              type="primary"
+              shape="circle"
+              icon={<EditFilled />}
+              onClick={() => setEditModalVisible(true)}
+            />
+          </Tooltip>
+          <Tooltip title="Delete">
+            <Button
+              type="primary"
+              shape="circle"
+              icon={<DeleteFilled />}
+              style={{ marginLeft: '8px' }}
+              onClick={showModal}
+            />
+          </Tooltip>
+        </div>
+      </HeadingContainer>
       <Modal
         visible={deleteModalVisible}
         onOk={handleDelete}
@@ -68,36 +105,45 @@ const CandidateDetails = ({ candidate, dispatch }) => {
         editModalVisible={editModalVisible}
         setEditModalVisible={setEditModalVisible}
       />
-      <HeadingContainer>
-        <h1>{`${candidate.firstName} ${candidate.lastName}`}</h1>
-        <div>
-          <Tooltip title="Edit">
-            <Button
-              type="primary"
-              shape="circle"
-              icon={<EditFilled />}
-              onClick={() => setEditModalVisible(true)}
-            />
-          </Tooltip>
-          <Tooltip title="Delete">
-            <Button
-              type="primary"
-              shape="circle"
-              icon={<DeleteFilled />}
-              style={{ marginLeft: '5px' }}
-              onClick={showModal}
-            />
-          </Tooltip>
-        </div>
-      </HeadingContainer>
       <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]} type="flex">
-        <Col xs={24} md={16}></Col>
-        <Col xs={24} md={8} style={{ order: 1 }}>
-          <div style={{ width: '150px', height: '150px', marginTop: '10px' }}>
-            <img src={candidate.avatar} alt="avatar" />
-          </div>
+        <Col xs={24} md={16} lg={14}></Col>
+        <Col xs={24} md={8} lg={10} style={{ order: 1 }}>
+          <AvatarContainer>
+            <div style={{ width: '150px', height: '150px', marginTop: '10px' }}>
+              <img src={candidate.avatar} alt="avatar" />
+            </div>
+            <LinksContainer>
+              <a
+                href={candidate.gitHubURL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#24292E', marginRight: '8px' }}
+              >
+                <GithubFilled />
+              </a>
+              <a
+                href={candidate.linkedInURL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#0077B5' }}
+              >
+                <LinkedinFilled />
+              </a>
+            </LinksContainer>
+          </AvatarContainer>
         </Col>
       </Row>
+      <CollapseIcon>
+        {collapse ? (
+          <Tooltip title="Expand">
+            <DownOutlined onClick={() => setCollapse(false)} />
+          </Tooltip>
+        ) : (
+          <Tooltip title="Collapse">
+            <UpOutlined onClick={() => setCollapse(true)} />
+          </Tooltip>
+        )}
+      </CollapseIcon>
     </Card>
   );
 };
