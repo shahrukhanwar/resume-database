@@ -17,9 +17,12 @@ const NotesForm = ({ dispatch, id, notes }) => {
   const handleSubmit = async () => {
     if (!input) return;
     setstate({ ...state, buttonLoading: true });
-    const response = await axios.patch(`https://2421ef13.ngrok.io/${id}`, {
-      notes: input,
-    });
+    const response = await axios.patch(
+      `https://resume-database-server.herokuapp.com/${id}`,
+      {
+        notes: input,
+      }
+    );
     if (response.data.success) {
       dispatch(addNotes(id, input));
       message.success('Notes Added Successfully!');

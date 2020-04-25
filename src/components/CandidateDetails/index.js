@@ -37,7 +37,7 @@ const CandidateDetails = ({ candidate, dispatch }) => {
   const handleDelete = async () => {
     setButtonLoading(true);
     const response = await axios.delete(
-      `https://2421ef13.ngrok.io/${candidate._id}`
+      `https://resume-database-server.herokuapp.com/${candidate._id}`
     );
     if (response.data.success) {
       dispatch(deleteCandidate(candidate._id));

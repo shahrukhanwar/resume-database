@@ -18,7 +18,9 @@ const CandidateList = () => {
   const [sortBy, setSortBy] = useState('');
 
   const getData = async () => {
-    const response = await axios.get('https://2421ef13.ngrok.io/');
+    const response = await axios.get(
+      'https://resume-database-server.herokuapp.com/'
+    );
     if (response.data.success) {
       dispatch(getCandidates(response.data.data));
     }

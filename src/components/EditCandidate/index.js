@@ -21,7 +21,7 @@ const EditCandidate = ({
   const onFinish = async (values) => {
     setButtonLoading(true);
     const response = await axios.patch(
-      `https://2421ef13.ngrok.io/${candidate._id}`,
+      `https://resume-database-server.herokuapp.com/${candidate._id}`,
       values
     );
     if (response.data.success) {

@@ -32,9 +32,12 @@ const TagGroup = ({ id, tags, dispatch }) => {
   const handleInputConfirm = async () => {
     if (!inputValue) return;
     setState({ ...state, loading: true });
-    const response = await axios.post(`https://2421ef13.ngrok.io/${id}/tags`, {
-      tag: inputValue,
-    });
+    const response = await axios.post(
+      `https://resume-database-server.herokuapp.com/${id}/tags`,
+      {
+        tag: inputValue,
+      }
+    );
     if (response.data.success) {
       dispatch(addTag(id, inputValue));
       setState({
@@ -50,9 +53,8 @@ const TagGroup = ({ id, tags, dispatch }) => {
   };
 
   const handleClose = async (removedTag) => {
-    console.log(removedTag);
     const response = await axios.delete(
-      `https://2421ef13.ngrok.io/${id}/tags`,
+      `https://resume-database-server.herokuapp.com/${id}/tags`,
       {
         data: {
           tag: removedTag,
