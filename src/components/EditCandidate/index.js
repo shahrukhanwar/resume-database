@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Form, Input, Button, message } from 'antd';
+import { Modal, Form, Input, Button, message, InputNumber } from 'antd';
 import axios from 'axios';
 
 import { editCandidate } from '../../actions';
@@ -72,7 +72,7 @@ const EditCandidate = ({
             <TextArea rows={4} />
           </Form.Item>
           <Form.Item label="Experience" name="experience">
-            <Input type="number" />
+            <InputNumber min={0} />
           </Form.Item>
           <Form.Item label="Location" name="location">
             <Input />
