@@ -105,7 +105,7 @@ const CandidateDetails = ({ candidate, dispatch }) => {
         setEditModalVisible={setEditModalVisible}
       />
       <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]} type="flex">
-        <Col xs={24} md={16} lg={14}>
+        <Col xs={24} sm={14} md={16} lg={14}>
           <InfoContainer>
             <p>
               <span className="info-key">Phone:</span>
@@ -166,7 +166,7 @@ const CandidateDetails = ({ candidate, dispatch }) => {
             )}
           </InfoContainer>
         </Col>
-        <ColX xs={24} md={8} lg={10}>
+        <ColX xs={24} sm={10} md={8} lg={10}>
           <AvatarContainer>
             <div style={{ width: '150px', height: '150px', marginTop: '10px' }}>
               <img src={candidate.avatar} alt="avatar" />
