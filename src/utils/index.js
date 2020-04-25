@@ -32,9 +32,29 @@ const zToASort = (a, b) => {
   return 0;
 };
 
+const randomColor = () => {
+  const colors = [
+    'blue',
+    'orange',
+    'gold',
+    'magenta',
+    'red',
+    'purple',
+    'volcano',
+    'lime',
+    'green',
+    'geekblue',
+    'cyan',
+  ];
+  const randomNumber = Math.floor(Math.random() * 11);
+
+  return colors[randomNumber];
+};
+
 export default {
   lowToHighExp,
   highToLowExp,
   aToZSort,
   zToASort,
+  randomColor,
 };
