@@ -4,6 +4,7 @@ import {
   EDIT_CANDIDATE,
   ADD_TAG,
   DELETE_TAG,
+  ADD_NOTES,
 } from '../actions/actionTypes';
 
 const reducer = (state, { type, payload }) => {
@@ -33,6 +34,13 @@ const reducer = (state, { type, payload }) => {
               ...candidate,
               tags: candidate.tags.filter((tag) => tag !== payload.tag),
             }
+          : candidate
+      );
+
+    case ADD_NOTES:
+      return state.map((candidate) =>
+        candidate._id === payload.id
+          ? { ...candidate, notes: payload.notes }
           : candidate
       );
     default:

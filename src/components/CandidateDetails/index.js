@@ -22,6 +22,7 @@ import {
 import { deleteCandidate } from '../../actions';
 import EditCandidate from '../EditCandidate';
 import TagGroup from '../TagGroup';
+import NotesForm from '../NotesForm';
 
 const CandidateDetails = ({ candidate, dispatch }) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
@@ -113,15 +114,15 @@ const CandidateDetails = ({ candidate, dispatch }) => {
         <Col xs={24} md={16} lg={14}>
           <InfoContainer>
             <p>
-              <span className="info-key">Phone: </span>
+              <span className="info-key">Phone:</span>
               {candidate.phone}
             </p>
             <p>
-              <span className="info-key">Experience: </span>
+              <span className="info-key">Experience:</span>
               {candidate.experience} years
             </p>
             <p>
-              <span className="info-key">Resume: </span>
+              <span className="info-key">Resume:</span>
               <a
                 href={candidate.resume}
                 target="_blank"
@@ -138,15 +139,21 @@ const CandidateDetails = ({ candidate, dispatch }) => {
               </a>
             </p>
             <p>
-              <span className="info-key">
-                Tags:{' '}
-                <TagGroup
-                  tags={candidate.tags}
-                  dispatch={dispatch}
-                  id={candidate._id}
-                />
-              </span>
+              <span className="info-key">Tags:</span>
+              <TagGroup
+                tags={candidate.tags}
+                dispatch={dispatch}
+                id={candidate._id}
+              />
             </p>
+            <div style={{ display: 'flex' }}>
+              <span className="info-key">Notes:</span>
+              <NotesForm
+                dispatch={dispatch}
+                id={candidate._id}
+                notes={candidate.notes}
+              />
+            </div>
           </InfoContainer>
         </Col>
         <ColX xs={24} md={8} lg={10}>

@@ -4,6 +4,7 @@ import {
   EDIT_CANDIDATE,
   ADD_TAG,
   DELETE_TAG,
+  ADD_NOTES,
 } from '../actions/actionTypes';
 
 export const getCandidates = (data) => ({
@@ -29,4 +30,9 @@ export const addTag = (id, tag) => ({
 export const deleteTag = (id, tag) => ({
   type: DELETE_TAG,
   payload: { id, tag },
+});
+
+export const addNotes = (id, notes) => ({
+  type: ADD_NOTES,
+  payload: { id, notes },
 });
