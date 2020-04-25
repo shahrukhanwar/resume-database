@@ -66,7 +66,7 @@ const EditCandidate = ({
             <Input />
           </Form.Item>
           <Form.Item label="Phone" name="phone">
-            <Input />
+            <Input maxLength={10} />
           </Form.Item>
           <Form.Item label="Summary" name="summary">
             <TextArea rows={4} />
