@@ -54,13 +54,7 @@ const CandidateDetails = ({ candidate, dispatch }) => {
   };
 
   return (
-    <Card
-      hoverable={true}
-      className="candidate-card"
-      style={{
-        height: collapse ? 'auto' : '600px',
-      }}
-    >
+    <Card hoverable={true} className="candidate-card">
       <HeadingContainer>
         <h1>{`${candidate.firstName} ${candidate.lastName}`}</h1>
         <div>
@@ -154,6 +148,22 @@ const CandidateDetails = ({ candidate, dispatch }) => {
                 notes={candidate.notes}
               />
             </div>
+            {!collapse && (
+              <div style={{ marginTop: '14px' }}>
+                <p>
+                  <span className="info-key">Email:</span>
+                  {candidate.email}
+                </p>
+                <p>
+                  <span className="info-key">Location:</span>
+                  {candidate.location}
+                </p>
+                <p>
+                  <span className="info-key">Summary:</span>
+                  {candidate.summary}
+                </p>
+              </div>
+            )}
           </InfoContainer>
         </Col>
         <ColX xs={24} md={8} lg={10}>
