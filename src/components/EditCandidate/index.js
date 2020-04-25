@@ -83,6 +83,9 @@ const EditCandidate = ({
           <Form.Item label="LinkedIn" name="linkedInURL">
             <Input />
           </Form.Item>
+          <Form.Item label="Notes" name="notes">
+            <Input />
+          </Form.Item>
 
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit" loading={buttonLoading}>
