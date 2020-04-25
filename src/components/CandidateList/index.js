@@ -18,7 +18,7 @@ const CandidateList = () => {
   const [sortBy, setSortBy] = useState('');
 
   const getData = async () => {
-    const response = await axios.get('https://d8856c1e.ngrok.io/');
+    const response = await axios.get('https://2421ef13.ngrok.io/');
     if (response.data.success) {
       dispatch(getCandidates(response.data.data));
     }

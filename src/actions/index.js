@@ -2,6 +2,8 @@ import {
   GET_CANDIDATES,
   DELETE_CANDIDATE,
   EDIT_CANDIDATE,
+  ADD_TAG,
+  DELETE_TAG,
 } from '../actions/actionTypes';
 
 export const getCandidates = (data) => ({
@@ -17,4 +19,14 @@ export const deleteCandidate = (id) => ({
 export const editCandidate = (data) => ({
   type: EDIT_CANDIDATE,
   payload: data,
+});
+
+export const addTag = (id, tag) => ({
+  type: ADD_TAG,
+  payload: { id, tag },
+});
+
+export const deleteTag = (id, tag) => ({
+  type: DELETE_TAG,
+  payload: { id, tag },
 });

@@ -28,3 +28,18 @@ body {
 .ant-form-horizontal .ant-form-item-label {
   display: flex;
 }
+
+.info-key {
+  font-weight: 300;
+}
+
+.site-tag-plus {
+  background: #fff;
+  border-style: dashed;
+}
+
+.tag-input {
+  width: 78px;
+  margin-right: 8px;
+  vertical-align: top;
+}

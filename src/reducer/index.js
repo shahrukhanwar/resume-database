@@ -2,6 +2,8 @@ import {
   GET_CANDIDATES,
   DELETE_CANDIDATE,
   EDIT_CANDIDATE,
+  ADD_TAG,
+  DELETE_TAG,
 } from '../actions/actionTypes';
 
 const reducer = (state, { type, payload }) => {
@@ -17,6 +19,22 @@ const reducer = (state, { type, payload }) => {
         candidate._id === payload._id ? payload : candidate
       );
 
+    case ADD_TAG:
+      return state.map((candidate) =>
+        candidate._id === payload.id
+          ? { ...candidate, tags: [...candidate.tags, payload.tag] }
+          : candidate
+      );
+
+    case DELETE_TAG:
+      return state.map((candidate) =>
+        candidate._id === payload.id
+          ? {
+              ...candidate,
+              tags: candidate.tags.filter((tag) => tag !== payload.tag),
+            }
+          : candidate
+      );
     default:
       return state;
   }
