@@ -194,13 +194,25 @@ const CandidateDetails = ({ candidate, dispatch }) => {
       </Row>
       <CollapseIcon>
         {collapse ? (
-          <Tooltip title="Expand">
-            <DownOutlined onClick={() => setCollapse(false)} />
-          </Tooltip>
+          <Button
+            size="small"
+            type="primary"
+            icon={<DownOutlined />}
+            onClick={() => setCollapse(false)}
+            ghost
+          >
+            Expand
+          </Button>
         ) : (
-          <Tooltip title="Collapse">
-            <UpOutlined onClick={() => setCollapse(true)} />
-          </Tooltip>
+          <Button
+            size="small"
+            type="primary"
+            icon={<UpOutlined />}
+            onClick={() => setCollapse(true)}
+            ghost
+          >
+            Collapse
+          </Button>
         )}
       </CollapseIcon>
     </Card>
