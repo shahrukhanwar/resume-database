@@ -19,6 +19,10 @@ const SearchSort = ({ searchBy, setSearchBy, sortBy, setSortBy }) => {
       <Option value="location">Location</Option>
       <Option value="phone">Phone</Option>
       <Option value="tags">Tag</Option>
+      <Option value="notes">Notes</Option>
+      <Option value="summary">Summary</Option>
+      <Option value="gitHubURL">GitHub</Option>
+      <Option value="linkedInURL">LinkedIn</Option>
     </Select>
   );
 

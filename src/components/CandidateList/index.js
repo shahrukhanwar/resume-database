@@ -47,7 +47,8 @@ const CandidateList = () => {
           {state
             .filter((candidate) =>
               typeof candidate[searchBy.key] !== 'object'
-                ? candidate[searchBy.key]
+                ? candidate[searchBy.key] &&
+                  candidate[searchBy.key]
                     .toLowerCase()
                     .includes(searchBy.value.toLowerCase())
                 : candidate[searchBy.key].some((val) =>
