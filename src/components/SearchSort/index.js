@@ -5,8 +5,8 @@ import { Container, SearchContainer } from './style';
 
 const { Option } = Select;
 
-const SearchSort = ({ searchBy, setSearchBy, sortBy, setSortBy }) => {
-  const selectAfter = (
+const SearchSort = ({ searchBy, setSearchBy, setSortBy }) => {
+  const selectBefore = (
     <Select
       style={{ width: 80 }}
       value={searchBy.key}
@@ -28,10 +28,11 @@ const SearchSort = ({ searchBy, setSearchBy, sortBy, setSortBy }) => {
 
   return (
     <Container>
+      {/* Search Component */}
       <SearchContainer>
         <div style={{ marginBottom: 10, display: 'flex' }}>
           <Input
-            addonBefore={selectAfter}
+            addonBefore={selectBefore}
             placeholder={`Search by ${searchBy.key.toLowerCase()}`}
             onChange={(e) =>
               setSearchBy({ ...searchBy, value: e.target.value })
@@ -41,6 +42,7 @@ const SearchSort = ({ searchBy, setSearchBy, sortBy, setSortBy }) => {
         </div>
       </SearchContainer>
 
+      {/* Sort Component */}
       <div style={{ alignSelf: 'flex-end' }}>
         <Select
           showSearch

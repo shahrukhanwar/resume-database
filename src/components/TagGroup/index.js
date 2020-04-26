@@ -17,6 +17,7 @@ const TagGroup = ({ id, tags, dispatch }) => {
 
   const inputRef = useRef(null);
 
+  // show input box to add a tag
   const showInput = () => {
     setState({ ...state, inputVisible: true });
   };
@@ -29,6 +30,7 @@ const TagGroup = ({ id, tags, dispatch }) => {
     setState({ ...state, inputValue: e.target.value });
   };
 
+  // add tag api request and update state
   const handleInputConfirm = async () => {
     if (!inputValue) return;
     setState({ ...state, loading: true });
@@ -52,6 +54,7 @@ const TagGroup = ({ id, tags, dispatch }) => {
     }
   };
 
+  // delete tag api request and update state
   const handleClose = async (removedTag) => {
     const response = await axios.delete(
       `https://resume-database-server.herokuapp.com/${id}/tags`,

@@ -14,10 +14,12 @@ const EditCandidate = ({
 }) => {
   const [buttonLoading, setButtonLoading] = useState(false);
 
+  // Hide edit candidate modal
   const handleCancel = () => {
     setEditModalVisible(false);
   };
 
+  // edit candidate api request and update the state
   const onFinish = async (values) => {
     setButtonLoading(true);
     const response = await axios.patch(

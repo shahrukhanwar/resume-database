@@ -1,11 +1,14 @@
+// sort candidates by low to high experience
 const lowToHighExp = (a, b) => {
   return a.experience - b.experience;
 };
 
+// sort candidates by high to low experience
 const highToLowExp = (a, b) => {
   return b.experience - a.experience;
 };
 
+// sort candidates alphabetically in increasing order
 const aToZSort = (a, b) => {
   var nameA = a.firstName.toUpperCase();
   var nameB = b.firstName.toUpperCase();
@@ -19,6 +22,7 @@ const aToZSort = (a, b) => {
   return 0;
 };
 
+// sort candidates alphabetically in decreasing order
 const zToASort = (a, b) => {
   var nameA = a.firstName.toUpperCase();
   var nameB = b.firstName.toUpperCase();
@@ -32,6 +36,7 @@ const zToASort = (a, b) => {
   return 0;
 };
 
+// function to generate a random color
 const randomColor = () => {
   const colors = [
     'blue',

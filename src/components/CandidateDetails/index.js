@@ -30,10 +30,12 @@ const CandidateDetails = ({ candidate, dispatch }) => {
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [collapse, setCollapse] = useState(true);
 
+  // show delete confirm modal
   const showModal = () => {
     setDeleteModalVisible(true);
   };
 
+  // delete candidate api request and update state
   const handleDelete = async () => {
     setButtonLoading(true);
     const response = await axios.delete(
@@ -49,6 +51,7 @@ const CandidateDetails = ({ candidate, dispatch }) => {
     setDeleteModalVisible(false);
   };
 
+  // hide delete confirm modal
   const handleCancel = () => {
     setDeleteModalVisible(false);
   };

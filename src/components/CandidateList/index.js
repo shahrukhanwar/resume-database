@@ -17,6 +17,7 @@ const CandidateList = () => {
   });
   const [sortBy, setSortBy] = useState('');
 
+  // get all candidates and save in state
   const getData = async () => {
     const response = await axios.get(
       'https://resume-database-server.herokuapp.com/'
@@ -35,7 +36,6 @@ const CandidateList = () => {
       <SearchSort
         setSearchBy={setSearchBy}
         searchBy={searchBy}
-        sortBy={sortBy}
         setSortBy={setSortBy}
       />
       {state.length > 0 ? (
@@ -44,6 +44,7 @@ const CandidateList = () => {
           type="flex"
           style={{ minHeight: 'calc(100vh - 248px)' }}
         >
+          {/* Filter and sort the candidates according to the conditions before mapping them to the component */}
           {state
             .filter((candidate) =>
               typeof candidate[searchBy.key] !== 'object'

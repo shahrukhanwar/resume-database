@@ -14,6 +14,7 @@ const NotesForm = ({ dispatch, id, notes }) => {
   });
   const { input, buttonLoading } = state;
 
+  // add note api request and update state
   const handleSubmit = async () => {
     if (!input) return;
     setstate({ ...state, buttonLoading: true });
