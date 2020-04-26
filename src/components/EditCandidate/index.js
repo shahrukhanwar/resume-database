@@ -56,13 +56,27 @@ const EditCandidate = ({
           initialValues={candidate}
           onFinish={onFinish}
         >
-          <Form.Item label="Firstname" name="firstName">
+          <Form.Item
+            label="Firstname"
+            name="firstName"
+            rules={[{ required: true, message: 'Please input firstname!' }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item label="Lastname" name="lastName">
+          <Form.Item
+            label="Lastname"
+            name="lastName"
+            rules={[{ required: true, message: 'Please input lastname!' }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item label="Email" name="email">
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              { type: 'email', required: true, message: 'Please input email!' },
+            ]}
+          >
             <Input />
           </Form.Item>
           <Form.Item label="Phone" name="phone">
