@@ -37,17 +37,23 @@ const CandidateDetails = ({ candidate, dispatch }) => {
 
   // delete candidate api request and update state
   const handleDelete = async () => {
-    setButtonLoading(true);
-    const response = await axios.delete(
-      `https://resume-database-server.herokuapp.com/${candidate._id}`
-    );
-    if (response.data.success) {
-      dispatch(deleteCandidate(candidate._id));
-      message.success('Deleted Successfully!');
+    if (
+      !localStorage.getItem('auth-token') === process.env.REACT_APP_AUTH_TOKEN
+    ) {
+      message.error('You are not authorized!');
     } else {
-      message.error('Something Went Wrong!');
+      setButtonLoading(true);
+      const response = await axios.delete(
+        `https://resume-database-server.herokuapp.com/${candidate._id}`
+      );
+      if (response.data.success) {
+        dispatch(deleteCandidate(candidate._id));
+        message.success('Deleted Successfully!');
+      } else {
+        message.error('Something Went Wrong!');
+      }
+      setButtonLoading(false);
     }
-    setButtonLoading(false);
     setDeleteModalVisible(false);
   };
 
