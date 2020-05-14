@@ -38,7 +38,7 @@ const CandidateDetails = ({ candidate, dispatch }) => {
   // delete candidate api request and update state
   const handleDelete = async () => {
     if (
-      !localStorage.getItem('auth-token') === process.env.REACT_APP_AUTH_TOKEN
+      localStorage.getItem('auth-token') !== process.env.REACT_APP_AUTH_TOKEN
     ) {
       message.error('You are not authorized!');
     } else {
